@@ -1,7 +1,7 @@
 from flask import request, make_response, redirect
 from flask import render_template, session, url_for
 from flask import flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from flask.helpers import make_response
 import unittest
@@ -41,7 +41,7 @@ def index():
 @login_required
 def hello():
     user_ip = session.get('user_ip')
-    username = session.get('username')
+    username = current_user.id
 
     context = {
         'user_ip' : user_ip,
